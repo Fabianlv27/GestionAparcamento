@@ -52,7 +52,9 @@ public class Camion extends Vehiculo {
 
     @Override
     public String toString() {
-        return "Camion:\n" + super.toString() + "\nnumEjes=" + numEjes;
+        return "Camion:\n" + super.toString() + "\nnumEjes=" + numEjes+"\n";
     }
-
+    public String String2() {
+        return super.String2()+ numEjes+"\n";
+    }
 }

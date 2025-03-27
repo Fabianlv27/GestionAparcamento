@@ -10,101 +10,70 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class GestionAparcamiento {
 
-    public static void main(String[] args) {
-        
-        Aparcamiento apar = new Aparcamiento();
-        
-        LocalDateTime Now = LocalDateTime.now();
+    static Aparcamiento apar = new Aparcamiento();
 
-        //System.out.println(apar);
-        
-        // Especifica la ruta del archivo
-        String rutaArchivo = "C:\\Users\\CEEP\\Desktop\\lista.txt";
-        
-        
-        // Leer el archivo y procesar cada línea
+    static String rutaArchivo = ".\\lista.txt";
+
+    public static void main(String[] args) {
+             LocalDateTime Now = LocalDateTime.now();
+        Automovil A1 = new Automovil("TodoTerreno", "AAA555", Now, true);
+        insertarVehiculo(A1);
+         
+   
+        //LLenarArray();
+    }
+
+    public static void insertarVehiculo(Automovil a) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
+            bw.write(a.String2()); // Convierte el objeto en texto
+            bw.newLine(); // Nueva línea para cada objeto
+            System.out.println("Archivo escrito correctamente.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void LLenarArray() {
+
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
-            // Leer línea por línea del archivo
+            Vehiculo V = null;
             while ((linea = br.readLine()) != null) {
-                // Procesar la línea para extraer el nombre y la edad
-                String[] partes = linea.split(", "); // Separar por la coma y espacio
-
-                // Extraer el nombre y la edad
-                String matricula = partes[0].split(": ")[1]; // Parte después de "Matricula: "
-                //LocalDateTime  fecha = LocalDateTime.parse(partes[1].split(": ")[1].split(":")[2].split(":")[3]); // Parte después de "Edad: "
-                boolean  abono = Boolean.parseBoolean(partes[2].split(": ")[1]); // Parte después de "Edad: "
-
-                // Crear un objeto Persona y añadirlo al ArrayList
-              //  apar.getVehiculos().add(new Automovil("auto", "123AAA", Now, true));
+                // Suponiendo que los atributos están separados por coma ","
+                String[] datos = linea.split(","); // Dividimos en 2 partes (nombre y edad, por ejemplo)
+                String matr = datos[0].split(":", 2)[1];
+                LocalDateTime fecha = LocalDateTime.parse(datos[1].split(":", 2)[1]);
+                boolean abono = Boolean.parseBoolean(datos[2].split(":", 2)[1]);
+                //Vemos si es Automovil o Camion
+                System.out.println(datos[3].split(":")[0]);
+                if (datos[3].split(":")[0].equals("Tipo")) {
+                    System.out.println("Es un auto");
+                    String tipo = datos[3].split(":")[1];
+                    V = new Automovil(tipo, matr, fecha, abono);
+                } else {
+                    System.out.println("Es un camion");
+                    int nEjes = Integer.parseInt(datos[3].split(":")[1]);
+                    V = new Camion(nEjes, matr, fecha, abono);
+                }
+                // Crear objeto a partir de los datos leídos
+                apar.getVehiculos().add(V);
             }
-
-            // Mostrar los objetos leídos
-            for (Vehiculo e : apar.getVehiculos()) {
-                System.out.println(e); // Utiliza el método toString()
-            }
-
         } catch (IOException e) {
-            System.out.println("error tus muertos");
             e.printStackTrace();
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /*
-        // Escribir el ArrayList en el archivo de texto
-        try {
-            // Crear un objeto File para representar el archivo
-            File archivo = new File(rutaArchivo);
-            
-            // Si el archivo no existe, se crea
-            if (!archivo.exists()) {
-                archivo.createNewFile();
-            }
-            
-            // Crear un FileWriter y un BufferedWriter
-            FileWriter fileWriter = new FileWriter(archivo);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            
-            // Recorrer el ArrayList y escribir cada elemento en el archivo
-            for (Vehiculo item : apar.getVehiculos()) {
-                bufferedWriter.write(item.toString());
-                bufferedWriter.newLine(); // Añadir una nueva línea después de cada elemento
-            }
-            
-            // Cerrar el BufferedWriter
-            bufferedWriter.close();
-            
-            System.out.println("El ArrayList se ha escrito en el archivo con éxito.");
-        } catch (IOException e) {
-            // Manejo de excepciones en caso de error al trabajar con archivos
-            e.printStackTrace();
-            System.out.println("error :(");
-        }
-        */
-        
-
-           
+        System.out.println("Array LLenado: ");
+        System.out.println(apar.getVehiculos());
     }
-    
-    public static void insertarVehiculo(){
-        
+
+    public static void LeerArray() {
+
     }
     /*
     public static void menu() {
@@ -140,5 +109,5 @@ public class GestionAparcamiento {
         }
 
     }
-  */  
+     */
 }

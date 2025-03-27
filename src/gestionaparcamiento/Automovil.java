@@ -31,8 +31,10 @@ public class Automovil extends Vehiculo {
     @Override
     public String toString() {
         
-        System.out.println("Automoviles: \n");
-        return  super.toString() + "\nTipo: " + Tipo;
+        return  super.toString() + "\nTipo: " + Tipo +"\n";
+    }
+    public String String2(){
+                return  super.String2()+ Tipo;
     }
 
     @Override

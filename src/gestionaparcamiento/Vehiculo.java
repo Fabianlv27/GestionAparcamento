@@ -57,6 +57,11 @@ public abstract class Vehiculo implements Comparable<Vehiculo>{
                 "-"+fecha.getYear() +"\nHora:"+ fecha.getHour()+": "+ fecha.getMinute()+
                 ": "+fecha.getSecond()+"\nabono: " + abono;
     }
+   public String String2() {
+        return matricula+","+fecha+
+                ","+ abono +",";
+    } 
+   
 
     // hashCode and Equals 
     @Override
@@ -67,7 +72,6 @@ public abstract class Vehiculo implements Comparable<Vehiculo>{
         hash = 17 * hash + (this.abono ? 1 : 0);
         return hash;
     }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
