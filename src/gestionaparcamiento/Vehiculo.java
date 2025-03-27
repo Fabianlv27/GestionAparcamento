@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 //Clase abstracta porque no habrá manera para disponer de objetos
-public abstract class Vehiculo implements Comparable<>{
+public abstract class Vehiculo implements Comparable<Vehiculo>{
 
     protected String matricula;
     //usamos localDateTime
