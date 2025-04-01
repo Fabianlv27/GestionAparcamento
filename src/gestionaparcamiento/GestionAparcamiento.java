@@ -18,7 +18,7 @@ public class GestionAparcamiento {
 
     static Aparcamiento apar = new Aparcamiento();
 
-    static String rutaArchivo = ".\\lista.txt";
+    static String rutaArchivo = "lista.txt";
 
     public static void main(String[] args) {
         LocalDateTime Now = LocalDateTime.now();
@@ -41,40 +41,8 @@ public class GestionAparcamiento {
 
     }
 
-    public static void LLenarArray() {
-
-        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
-            String linea;
-            Vehiculo V = null;
-            while ((linea = br.readLine()) != null) {
-                // Suponiendo que los atributos están separados por coma ","
-                String[] datos = linea.split(","); // Dividimos en 2 partes (nombre y edad, por ejemplo)
-                String matr = datos[0];
-                LocalDateTime fecha = LocalDateTime.parse(datos[1]);
-                boolean abono = Boolean.parseBoolean(datos[2]);
-                //Vemos si es Automovil o Camion
-                System.out.println(datos[3]);
-                if (datos[3].getClass().getSimpleName().equals("String")) {
-                    System.out.println("Es un auto");
-                    String tipo = datos[3];
-                    V = new Automovil(tipo, matr, fecha, abono);
-                } else {
-                    System.out.println("Es un camion");
-                    int nEjes = Integer.parseInt(datos[3]);
-                    V = new Camion(nEjes, matr, fecha, abono);
-                }
-                // Crear objeto a partir de los datos leídos
-                apar.getVehiculos().add(V);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Array LLenado: ");
-        System.out.println(apar.getVehiculos());
-    }
-
     public static void insertarVehiculo() {
-            //Logic todo here
+            apar.introducir_vehiculo();
     }
 
     public static void sacarVehiculo() {
@@ -88,7 +56,7 @@ public class GestionAparcamiento {
         int Action = 1;
         Scanner dato = new Scanner(System.in);
         while (Action != 0) {
-
+            limpiarConsola();
             System.out.println("-//-/-/-/-/-//-/-/Bienvenido Al Parking/-/-/-//-/-/-/-//-/-/");
             System.out.println("Que desea hacer?");
             System.out.println("(1) Menu Admin");
@@ -193,7 +161,8 @@ public class GestionAparcamiento {
     
     public static void limpiarConsola(){
         for (int i = 0; i < 1; i++) {
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                    + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         }
     }
 

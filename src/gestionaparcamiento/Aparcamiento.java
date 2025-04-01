@@ -55,41 +55,93 @@ public class Aparcamiento {
 
     //metodos de la clase
     public void introducir_vehiculo() {
-        boolean encontrado = false;
+    boolean encontrado = false;
 
-        System.out.print("Introduzca la matricula del vehiculo");
-        String matr = dato.next();
-        for (Vehiculo e : vehiculos) {
-            if (e.getMatricula().equalsIgnoreCase(matr)) {
-                System.out.println("El vehiculo ya existe en el aparcamiento.");
-                System.out.print("Quieres salir del parking?" + "S/N");
-                String respuesta = dato.next();
-                if (respuesta.equalsIgnoreCase("S")) {
-                    sacar_vehiculo();
-                }
-                encontrado = true;
-                break;
+    System.out.print("Introduzca la matricula del vehiculo: ");
+    String matr = dato.next();
+
+    for (Vehiculo e : vehiculos) {
+        if (e.getMatricula().equalsIgnoreCase(matr)) {
+            System.out.println("El vehiculo ya existe en el aparcamiento.");
+            System.out.print("Quieres salir del parking? (S/N): ");
+            String respuesta = dato.next();
+            if (respuesta.equalsIgnoreCase("S")) {
+                sacar_vehiculo();
             }
+            encontrado = true;
+            break;
         }
-
-        if (!encontrado) {
-            boolean abono = false;
-            System.out.println("Que tipo de vehiculo quiere introducir");
-            System.out.println("Pulse 0 para Automovil o 1 para Camion");
-            int respuesta = dato.nextInt();
-            System.out.println("Tiene abono? S/N");
-            String respuesta2 = dato.next();
-            if (!respuesta2.equalsIgnoreCase("S")) {
-                abono = true;
-            }
-            if (respuesta == 0) {
-                System.out.println("Tipo:");
-                String tipo = dato.next();
-                Automovil NewAuto = new Automovil(tipo, matr, LocalDateTime.now(), abono);
-            }
-        }
-
     }
+
+    if (!encontrado) {
+        boolean abono = false;
+
+        System.out.println("¿Qué tipo de vehículo quiere introducir?");
+        System.out.println("(0) Automóvil");
+        System.out.println("(1) Camión");
+
+        int respuesta;
+        while (true) {
+            try {
+                respuesta = dato.nextInt();
+                if (respuesta == 0 || respuesta == 1) {
+                    break;
+                }
+                System.out.println("Opción no válida. Intente nuevamente.");
+            } catch (Exception e) {
+                System.out.println("Error: Debe ingresar un número válido.");
+                dato.next(); // Limpiar buffer
+            }
+        }
+
+        System.out.print("¿Tiene abono? (S/N): ");
+        String respuesta2 = dato.next();
+        if (respuesta2.equalsIgnoreCase("S")) {
+            abono = true;
+        }
+
+        Vehiculo nuevoVehiculo = null;
+
+        if (respuesta == 0) {
+            System.out.println("Tipos de Automóvil:");
+            System.out.println("1. Turismo");
+            System.out.println("2. Todo Terreno");
+            System.out.println("3. Furgoneta");
+            System.out.print("Seleccione el tipo de automóvil (1-3): ");
+
+            int tipoSeleccionado = dato.nextInt();
+            String tipo = "";
+
+            switch (tipoSeleccionado) {
+                case 1:
+                    tipo = "Turismo";
+                    break;
+                case 2:
+                    tipo = "Todo Terreno";
+                    break;
+                case 3:
+                    tipo = "Furgoneta";
+                    break;
+                default:
+                    System.out.println("Opción no válida. Se guardará como 'Desconocido'.");
+                    tipo = "Desconocido";
+            }
+
+            nuevoVehiculo = new Automovil(tipo, matr, LocalDateTime.now(), abono);
+        } else {
+            System.out.print("Ingrese el número de ejes del camión: ");
+            int ejes = dato.nextInt();
+            nuevoVehiculo = new Camion(ejes, matr, LocalDateTime.now(), abono);
+        }
+
+        vehiculos.add(nuevoVehiculo);
+        System.out.println("Vehículo agregado con éxito.");
+
+        // 🔹 Ahora actualizamos el archivo con el nuevo vehículo
+        actualizarArchivo();
+    }
+}
+
 
     public void sacar_vehiculo() {
     //toDoLogic
@@ -126,16 +178,19 @@ public class Aparcamiento {
     
     public void actualizarArchivo() {
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo))) {
-        for (Vehiculo v : apar.getVehiculos()) {
-            bw.write(v.String2());  // Convierte el objeto en texto
-            bw.newLine();  // Nueva línea para cada vehículo
+        for (Vehiculo v : vehiculos) {
+            if (v instanceof Automovil) {
+                bw.write("Automovil," + v.String2()); // Marcamos que es un Automóvil
+            } else if (v instanceof Camion) {
+                bw.write("Camion," + v.String2()); // Marcamos que es un Camión
+            }
+            bw.newLine();
         }
         System.out.println("Archivo actualizado correctamente.");
     } catch (IOException e) {
         System.out.println("Error al actualizar el archivo.");
         e.printStackTrace();
     }
-
-
 }
+
 }

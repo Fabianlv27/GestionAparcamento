@@ -1,3 +1,5 @@
-AAA555,2025-03-27T14:17:19,true,TodoTerreno
-AAA555,2025-03-27T14:17:28,true,TodoTerreno
-AAA555,2025-04-01T11:02:54,true,TodoTerreno
+Automovil,1234AAA,2025-04-01T20:00:58,true,Turismo;
+Automovil,4321AAA,2025-04-01T20:01:09,true,Todo Terreno;
+Automovil,5555RRR,2025-04-01T20:01:18,false,Furgoneta;
+Camion,7474DSD,2025-04-01T20:01:28,true,2;
+Camion,7474GHG,2025-04-01T20:01:46,false,5;
