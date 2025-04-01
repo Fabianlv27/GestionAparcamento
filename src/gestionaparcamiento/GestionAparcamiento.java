@@ -22,11 +22,11 @@ public class GestionAparcamiento {
 
     public static void main(String[] args) {
              LocalDateTime Now = LocalDateTime.now();
-        Automovil A1 = new Automovil("TodoTerreno", "AAA555", Now, true);
-        insertarVehiculo(A1);
+        //Automovil A1 = new Automovil("TodoTerreno", "AAA555", Now, true);
+       // insertarVehiculo(A1);
          
    
-        //LLenarArray();
+       LLenarArray();
     }
 
     public static void insertarVehiculo(Automovil a) {
@@ -48,18 +48,18 @@ public class GestionAparcamiento {
             while ((linea = br.readLine()) != null) {
                 // Suponiendo que los atributos están separados por coma ","
                 String[] datos = linea.split(","); // Dividimos en 2 partes (nombre y edad, por ejemplo)
-                String matr = datos[0].split(":", 2)[1];
-                LocalDateTime fecha = LocalDateTime.parse(datos[1].split(":", 2)[1]);
-                boolean abono = Boolean.parseBoolean(datos[2].split(":", 2)[1]);
+                String matr = datos[0];
+                LocalDateTime fecha = LocalDateTime.parse(datos[1]);
+                boolean abono = Boolean.parseBoolean(datos[2]);
                 //Vemos si es Automovil o Camion
-                System.out.println(datos[3].split(":")[0]);
-                if (datos[3].split(":")[0].equals("Tipo")) {
+                System.out.println(datos[3]);
+                if (datos[3].getClass().getSimpleName().equals("String")) {
                     System.out.println("Es un auto");
-                    String tipo = datos[3].split(":")[1];
+                    String tipo = datos[3];
                     V = new Automovil(tipo, matr, fecha, abono);
                 } else {
                     System.out.println("Es un camion");
-                    int nEjes = Integer.parseInt(datos[3].split(":")[1]);
+                    int nEjes = Integer.parseInt(datos[3]);
                     V = new Camion(nEjes, matr, fecha, abono);
                 }
                 // Crear objeto a partir de los datos leídos
