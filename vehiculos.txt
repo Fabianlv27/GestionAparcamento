@@ -1,0 +1,24 @@
+Matrícula: 123AAA
+Fecha: 27-3-2025
+Hora: 14:6:40
+Abono: true
+Tipo: Coche
+
+Matrícula: 456BBB
+Fecha: 27-3-2025
+Hora: 14:6:40
+Abono: false
+Tipo: Furgoneta
+
+Matrícula: 789CCC
+Fecha: 27-3-2025
+Hora: 14:6:40
+Abono: true
+Tipo: Todoterreno
+
+Matrícula: 101DDD
+Fecha: 27-3-2025
+Hora: 14:6:40
+Abono: false
+Número de ejes: 3
+

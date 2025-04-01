@@ -5,6 +5,7 @@
 package gestionaparcamiento;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 /**
  *
@@ -34,20 +35,27 @@ public class Camion extends Vehiculo {
 
     @Override
     public double calcularImporte() {
-
-        double tiempoTotal=0;
-        LocalDateTime entrada= super.getFecha();
-        LocalDateTime salida=LocalDateTime.now();
-        
-        
-        double total_pagar = 0.0;
-        if (numEjes <= 3) {
-            //todo logic
-            //Ejes ≤ 3 → minutos * 4.5 € / 60 
-        } else {
-            //Ejes > 3 → minutos * 6.5 € / 60
+        //Damos valor a la fecha de salida con la fecha que es cuando introduce de nuevo la matirucla
+        LocalDateTime fechaSalida = LocalDateTime.now();
+        //Convertimos a minutos y hacemso la diferencia entre la entrada (Fecha) y Salida
+        //Para calcular el tiempo total en minutos
+        long minutos = ChronoUnit.MINUTES.
+                between(this.getFecha(), fechaSalida);
+        double tasa=0;
+        double total=0;
+        //Tasa equivale a lo que cuesta según las caracteristicas del vehiculo
+        if (numEjes<=3){
+            tasa = 4.5;
+        }else{
+            tasa = 6.5;
         }
-        return total_pagar;
+        //Calculamos el precio a pagar por el usuario
+        total=minutos * tasa / 60;
+        if(this.isAbono()){
+            //Si tiene abono a ese total le aplicamos el 40% de descuento
+            total -= (total*0.4);
+        }
+        return total;
     }
 
     @Override
