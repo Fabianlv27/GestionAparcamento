@@ -27,6 +27,7 @@ public class GestionAparcamiento {
          
    
        LLenarArray();
+       sacarVehiculo();
     }
 
     public static void insertarVehiculo(Automovil a) {
@@ -72,9 +73,9 @@ public class GestionAparcamiento {
         System.out.println(apar.getVehiculos());
     }
 
-    public static void LeerArray() {
-
-    }
+    public static void sacarVehiculo(){
+        apar.sacar_vehiculo();
+}
     /*
     public static void menu() {
         //clearConsole();
