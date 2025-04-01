@@ -23,13 +23,14 @@ public class GestionAparcamiento {
     public static void main(String[] args) {
              LocalDateTime Now = LocalDateTime.now();
         //Automovil A1 = new Automovil("TodoTerreno", "AAA555", Now, true);
-       // insertarVehiculo(A1);
-         
+        //insertarVehiculo(A1);
+       Camion C1=new Camion(2, "BBBB123", Now, true);
+         insertarVehiculo(C1);
    
        LLenarArray();
     }
 
-    public static void insertarVehiculo(Automovil a) {
+    public static void insertarVehiculo(Vehiculo a) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
             bw.write(a.String2()); // Convierte el objeto en texto
             bw.newLine(); // Nueva línea para cada objeto

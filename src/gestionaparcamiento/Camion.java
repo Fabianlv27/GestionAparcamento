@@ -55,6 +55,6 @@ public class Camion extends Vehiculo {
         return "Camion:\n" + super.toString() + "\nnumEjes=" + numEjes+"\n";
     }
     public String String2() {
-        return super.String2()+ numEjes+"\n";
+        return super.String2()+ numEjes;
     }
 }
