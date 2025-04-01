@@ -45,7 +45,7 @@ public abstract class Vehiculo implements Comparable<Vehiculo>{
        
         this.matricula = matricula;
         //localDateTime.now para usar la hora presente
-        this.fecha = LocalDateTime.now().withNano(0);
+        this.fecha = fecha;
         this.abono = abono;
     }
 

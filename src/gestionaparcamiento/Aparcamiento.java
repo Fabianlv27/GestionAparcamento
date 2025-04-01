@@ -94,16 +94,20 @@ public class Aparcamiento {
     public void sacar_vehiculo() {
     //toDoLogic
     boolean encontrado = false;
+    
     try {
+        
         System.out.print("Introduzca la matricula del vehiculo: ");
         String matr = dato.next();
         for (Vehiculo e : vehiculos) {
             if (e.getMatricula().equalsIgnoreCase(matr)) {
+                
                 System.out.println("El vehiculo ha sido encontrado con exito.");
                 System.out.print("Quieres salir del parking? (S/N): ");
                 String respuesta = dato.next();
                 if (respuesta.equalsIgnoreCase("S")) {
                     // Eliminar el vehículo de la lista
+                    System.out.println(e.calcularImporte());
                     vehiculos.remove(e);
 
                     // Ahora reescribimos el archivo con la lista actualizada
@@ -138,4 +142,5 @@ public class Aparcamiento {
 
 
 }
+   
 }

@@ -45,16 +45,18 @@ public class Automovil extends Vehiculo {
         //Convertimos a minutos y hacemso la diferencia entre la entrada (Fecha) y Salida
         //Para calcular el tiempo total en minutos
         //A VER SIS E CAMBIA
-        long minutos = ChronoUnit.MINUTES.
-                between(this.getFecha(), fechaSalida);
+        long minutos = ChronoUnit.MINUTES.between(this.getFecha(), fechaSalida);
+        System.out.println(this.getFecha());
+        System.out.println(minutos);
         double tasa=0;
         double total=0;
+        System.out.println(Tipo);
         //Tasa equivale a lo que cuesta según las caracteristicas del vehiculo
-        switch(Tipo){
+        switch(this.Tipo){
             case "Turismo":
                 tasa=1.5;
                 break;
-            case "Todoterreno":
+            case "TodoTerreno":
                 tasa=2.5;
                 break;
             case "Furgoneta":

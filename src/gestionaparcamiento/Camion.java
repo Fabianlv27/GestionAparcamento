@@ -44,7 +44,7 @@ public class Camion extends Vehiculo {
         double tasa=0;
         double total=0;
         //Tasa equivale a lo que cuesta según las caracteristicas del vehiculo
-        if (numEjes<=3){
+        if (this.numEjes<=3){
             tasa = 4.5;
         }else{
             tasa = 6.5;
@@ -63,6 +63,6 @@ public class Camion extends Vehiculo {
         return "Camion:\n" + super.toString() + "\nnumEjes=" + numEjes+"\n";
     }
     public String String2() {
-        return super.String2()+ numEjes+"\n";
+        return super.String2()+ numEjes;
     }
 }
