@@ -24,10 +24,12 @@ public class GestionAparcamiento {
              LocalDateTime Now = LocalDateTime.now();
        // Automovil A1 = new Automovil("TodoTerreno", "AAA555", Now, true);
        //insertarVehiculo(A1);
-        Camion C1 = new Camion(3,"1234AAA",Now,false);
-        insertarVehiculo(C1);
+        //Camion C1 = new Camion(3,"1234AAA",Now,false);
+        //insertarVehiculo(C1);
        LLenarArray();
-       sacarVehiculo();
+       //sacarVehiculo();
+       //apar.buscarPorFecha();
+       apar.verEstadisticas();
     }
 
     public static void insertarVehiculo(Vehiculo a) {
