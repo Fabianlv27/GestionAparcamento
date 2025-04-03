@@ -35,7 +35,7 @@ public class Automovil extends Vehiculo {
         return  super.toString() + "\nTipo: " + Tipo +"\n";
     }
     public String String2(){
-                return  super.String2()+ Tipo + ";";
+                return  super.String2()+ Tipo;
     }
 
     @Override

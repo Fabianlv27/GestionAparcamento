@@ -1,5 +1,13 @@
-Automovil,1234AAA,2025-04-01T20:00:58,true,Turismo;
-Automovil,4321AAA,2025-04-01T20:01:09,true,Todo Terreno;
-Automovil,5555RRR,2025-04-01T20:01:18,false,Furgoneta;
-Camion,7474DSD,2025-04-01T20:01:28,true,2;
-Camion,7474GHG,2025-04-01T20:01:46,false,5;
+1234RRR,2025-04-03T12:38:05,true,Turismo
+1234RRR,2025-04-03T12:38:14,true,Turismo
+0,2025-04-03T12:38:27,false,Furgoneta
+1234RRR,2025-04-03T12:44:14,true,Turismo
+1234RRR,2025-04-03T12:44:14,true,Turismo
+0,2025-04-03T12:44:14,false,Furgoneta
+2134ttt,2025-04-03T12:44:32,false,Turismo
+1234RRR,2025-04-03T12:47:12,true,Turismo
+0,2025-04-03T12:47:12,false,Furgoneta
+1234RRR,2025-04-03T12:47:12,true,Turismo
+1234RRR,2025-04-03T12:47:12,true,Turismo
+0,2025-04-03T12:47:12,false,Furgoneta
+2134ttt,2025-04-03T12:47:12,false,Turismo
