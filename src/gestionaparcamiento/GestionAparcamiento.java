@@ -54,7 +54,7 @@ public class GestionAparcamiento {
                 boolean abono = Boolean.parseBoolean(datos[2]);
                 //Vemos si es Automovil o Camion
                 System.out.println(datos[3]);
-                //Coge el camion como Automovil también !!!! está todo en texto asique siempre sera String
+                
                 if (datos[3].equals("TodoTerreno")||datos[3].equals("Furgoneta")||datos[3].equals("Turismo")) {
                     System.out.println("Es un auto");
                     String tipo = datos[3];
