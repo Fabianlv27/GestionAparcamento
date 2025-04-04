@@ -165,6 +165,17 @@ public class Aparcamiento {
         }
     }
 
+    public double porcentaje(int cant,int total) {
+        double porcentaje = Math.round(((cant * 100) / total) * 10.0) / 10.0;
+        return porcentaje;
+    }
+
+    public int caracteres(double porcent) {
+        int cantidadAutosCarcteres = (int) (30 * (porcent / 100));
+        return cantidadAutosCarcteres;
+
+    }
+
     public void verEstadisticas() {
         int cAutos = 0;
 
@@ -173,27 +184,71 @@ public class Aparcamiento {
                 cAutos++;
             }
         }
-        System.out.println(cAutos);
-        double porcentaje = Math.round(((cAutos * 100) / vehiculos.size()) * 10.0) / 10.0;
-        System.out.println(((cAutos * 100) / vehiculos.size()) / 100);
-        System.out.println(porcentaje);
-        int cantidadAutosCarcteres = (int) (30 * (porcentaje / 100));
-        System.out.println(cantidadAutosCarcteres);
-        System.out.print("\u001B[31m"+"Autos: "+Math.round(porcentaje)+"%"+"\u001B[31m");
-        System.out.println("\t"+"\u001B[32m"+"Camiones: "+( 100- Math.round(porcentaje))+"%"+"\u001B[32m");
+        double Aporcentaje = porcentaje(cAutos,vehiculos.size());
+        int Acarcateres = caracteres(Aporcentaje);
+        System.out.print("\u001B[31m" + "Autos: " + Math.round(Aporcentaje) + "% " + "(" + cAutos + ")" + "\u001B[31m");
+        System.out.println("\t" + "\u001B[32m" + "Camiones: " + (100 - Math.round(Aporcentaje)) + "% " + "(" + (vehiculos.size() - cAutos) + ")" + "\u001B[32m");
         for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < cantidadAutosCarcteres; j++) {
-                System.out.print("\u001B[31m"+"|"+"\u001B[31m");
+            for (int j = 0; j < Acarcateres; j++) {
+                System.out.print("\u001B[31m" + "|" + "\u001B[31m");
 
             }
-               for (int j = 0; j < 30 - cantidadAutosCarcteres; j++) {
-                System.out.print("\u001B[32m"+"|"+"\u001B[32m");
+            for (int j = 0; j < 30 - Acarcateres; j++) {
+                System.out.print("\u001B[32m" + "|" + "\u001B[32m");
 
             }
             System.out.println("");
         }
+
+        int cTTerreno = 0;
+        int cTurismo = 0;
+        int cFurgoneta = 0;
+        for (Vehiculo e : vehiculos) {
+            if (e instanceof Automovil) {
+                Automovil a = (Automovil) e;
+                if (a.getTipo().equals("TodoTerreno")) {
+                    cTTerreno++;
+                } else if (a.getTipo().equals("Furgoneta")) {
+                    cFurgoneta++;
+                } else {
+                    cTurismo++;
+                }
+            }
+        }
+        int suma=cTTerreno+cTurismo+cFurgoneta;
+        double PTTerreno = porcentaje(cTTerreno,suma);
+        int ccTTerreno = caracteres(PTTerreno);
         
-       
+        double PTurismo = porcentaje(cTurismo,suma);
+        int ccTurismo = caracteres(PTurismo);
+
+        double PFurgoneta = porcentaje(cFurgoneta,suma);
+        int ccFurgoneta = caracteres(PFurgoneta);
+int cctotal=ccTTerreno+ccFurgoneta+ccTurismo;
+        while (cctotal<30) {            
+            ccTTerreno++;
+            ccFurgoneta++;
+            ccTurismo++;
+            cctotal+=3;
+        }
+        System.out.print("\n"+"\u001B[31m" + "Todo Terreno: " + Math.round(PTTerreno) + "% " + "(" + cTTerreno + ")" + "\u001B[31m");
+        System.out.println("\t" + "\u001B[32m" + "Turismo: " + (Math.round(PTurismo)) + "% " + "(" + (cTurismo) + ")" + "\u001B[32m");
+        System.out.println("\t" + "\u001B[35m" + "Furgoneta: " + ( Math.round(PFurgoneta)) + "% " + "(" + (cFurgoneta) + ")" + "\u001B[35m"+"\n");
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < ccTTerreno; j++) {
+                System.out.print("\u001B[31m" + "|" + "\u001B[31m");
+
+            }
+            for (int j = 0; j <  ccTurismo; j++) {
+                System.out.print("\u001B[32m" + "|" + "\u001B[32m");
+
+            }
+            for (int j = 0; j < ccFurgoneta; j++) {
+                System.out.print("\u001B[35m" + "|" + "\u001B[35m");
+
+            }
+            System.out.println("");
+        }
     }
 
 }
