@@ -22,16 +22,19 @@ public class GestionAparcamiento {
 
     public static void main(String[] args) {
              LocalDateTime Now = LocalDateTime.now();
-        //Automovil A1 = new Automovil("TodoTerreno", "AAA555", Now, true);
-        //insertarVehiculo(A1);
-       Camion C1=new Camion(2, "BBBB123", Now, true);
-         insertarVehiculo(C1);
-   
+       // Automovil A1 = new Automovil("TodoTerreno", "AAA555", Now, true);
+       //insertarVehiculo(A1);
+        //Camion C1 = new Camion(3,"1234AAA",Now,false);
+        //insertarVehiculo(C1);
        LLenarArray();
+       //sacarVehiculo();
+       //apar.buscarPorFecha();
+       apar.verEstadisticas();
     }
 
     public static void insertarVehiculo(Vehiculo a) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo ,true))) {
+
             bw.write(a.String2()); // Convierte el objeto en texto
             bw.newLine(); // Nueva línea para cada objeto
             System.out.println("Archivo escrito correctamente.");
@@ -54,7 +57,8 @@ public class GestionAparcamiento {
                 boolean abono = Boolean.parseBoolean(datos[2]);
                 //Vemos si es Automovil o Camion
                 System.out.println(datos[3]);
-                if (datos[3].getClass().getSimpleName().equals("String")) {
+                
+                if (datos[3].equals("TodoTerreno")||datos[3].equals("Furgoneta")||datos[3].equals("Turismo")) {
                     System.out.println("Es un auto");
                     String tipo = datos[3];
                     V = new Automovil(tipo, matr, fecha, abono);
@@ -70,12 +74,15 @@ public class GestionAparcamiento {
             e.printStackTrace();
         }
         System.out.println("Array LLenado: ");
-        System.out.println(apar.getVehiculos());
+        //System.out.println(apar.getVehiculos());
+        for (Vehiculo e : apar.getVehiculos()) {
+            System.out.println(e.getClass());
+        }
     }
 
-    public static void LeerArray() {
-
-    }
+    public static void sacarVehiculo(){
+        apar.sacar_vehiculo();
+}
     /*
     public static void menu() {
         //clearConsole();

@@ -1,0 +1,46 @@
+[
+Automovil:
+
+matricula: 1234AAA
+fecha: 1-4-2025
+Hora:10: 39: 51
+abono: true
+Tipo: Turismo
+, 
+Automovil:
+
+matricula: 1234AAA
+fecha: 1-4-2025
+Hora:10: 39: 51
+abono: true
+Tipo: Turismo
+, 
+Automovil:
+
+matricula: 1234AAA
+fecha: 1-4-2025
+Hora:10: 39: 51
+abono: true
+Tipo: Turismo
+, 
+Camion:
+
+matricula: 4321BBB
+fecha: 1-4-2025
+Hora:10: 39: 51
+abono: true
+numEjes=3, 
+Camion:
+
+matricula: 4321BBB
+fecha: 1-4-2025
+Hora:10: 39: 51
+abono: true
+numEjes=3, 
+Camion:
+
+matricula: 4321BBB
+fecha: 1-4-2025
+Hora:10: 39: 51
+abono: true
+numEjes=3]
