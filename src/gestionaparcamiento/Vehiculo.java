@@ -50,12 +50,13 @@ public abstract class Vehiculo implements Comparable<Vehiculo>{
     }
 
     //toString
+
     @Override
     public String toString() {
-        return "\nmatricula: " + matricula
-                + "\nfecha: " + fecha.getDayOfMonth()+"-"+fecha.getMonthValue()+
-                "-"+fecha.getYear() +"\nHora:"+ fecha.getHour()+": "+ fecha.getMinute()+
-                ": "+fecha.getSecond()+"\nabono: " + abono;
+        return Colores.VERDE + "\nMatricula: " + Colores.RESET + matricula +
+               Colores.VERDE + "\nFecha: " + Colores.RESET + fecha.getDayOfMonth() + "-" + fecha.getMonthValue() + "-" + fecha.getYear() +
+               Colores.VERDE + "\nHora: " + Colores.RESET + fecha.getHour() + ": " + fecha.getMinute() + ": " + fecha.getSecond() +
+               Colores.VERDE + "\nAbono: " + Colores.RESET + abono;
     }
    public String String2() {
         return matricula+","+fecha+

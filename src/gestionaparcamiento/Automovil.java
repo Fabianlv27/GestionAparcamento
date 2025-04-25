@@ -28,14 +28,12 @@ public class Automovil extends Vehiculo {
         this.Tipo = Tipo;
 
     }
-
     @Override
     public String toString() {
-        
-        return  super.toString() + "\nTipo: " + Tipo +"\n";
+        return super.toString() + Colores.VERDE + "\nTipo: " +  Colores.RESET+ Tipo  + "\n";
     }
     public String String2(){
-                return  super.String2()+ Tipo;
+            return  super.String2()+ Tipo;
     }
 
     @Override
@@ -46,11 +44,12 @@ public class Automovil extends Vehiculo {
         //Para calcular el tiempo total en minutos
         //A VER SIS E CAMBIA
         long minutos = ChronoUnit.MINUTES.between(this.getFecha(), fechaSalida);
-        System.out.println(this.getFecha());
-        System.out.println(minutos);
+        System.out.println(Colores.CYAN+"Fecha de Inicio: "+Colores.RESET);
+                System.out.print(this.getFecha().withNano(0).withSecond(0));
+        System.out.println(Colores.CYAN+"Tiempo en minutos: "+Colores.RESET+minutos);
         double tasa=0;
         double total=0;
-        System.out.println(Tipo);
+        System.out.println(Colores.CYAN+"Tipo: "+Colores.RESET+ Tipo);
         //Tasa equivale a lo que cuesta según las caracteristicas del vehiculo
         switch(this.Tipo){
             case "Turismo":
@@ -64,7 +63,7 @@ public class Automovil extends Vehiculo {
                 break;    
         }
         //Calculamos el precio a pagar por el usuario
-        total=minutos * tasa / 60;
+        total= Math.round((minutos * tasa / 60)*100.0) / 100.0; 
         if(this.isAbono()){
             //Si tiene abono a ese total le aplicamos el 40% de descuento
             total -= (total*0.4);

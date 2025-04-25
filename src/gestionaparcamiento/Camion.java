@@ -41,6 +41,10 @@ public class Camion extends Vehiculo {
         //Para calcular el tiempo total en minutos
         long minutos = ChronoUnit.MINUTES.
                 between(this.getFecha(), fechaSalida);
+        System.out.println(Colores.CYAN+"Fecha de Inicio: "+Colores.RESET);
+                System.out.print(this.getFecha().withNano(0).withSecond(0));
+        System.out.println(Colores.CYAN+"Tiempo en minutos: "+Colores.RESET+minutos);
+        System.out.println(Colores.CYAN+"Numero de Ejes: "+Colores.RESET+this.numEjes);
         double tasa=0;
         double total=0;
         //Tasa equivale a lo que cuesta según las caracteristicas del vehiculo
@@ -50,17 +54,18 @@ public class Camion extends Vehiculo {
             tasa = 6.5;
         }
         //Calculamos el precio a pagar por el usuario
-        total=minutos * tasa / 60;
+        total = Math.round((minutos * tasa / 60)* 100.0) / 100.0; 
         if(this.isAbono()){
             //Si tiene abono a ese total le aplicamos el 40% de descuento
             total -= (total*0.4);
         }
+        total=Math.round(total*100.0)/100.0;
         return total;
     }
 
     @Override
     public String toString() {
-        return "Camion:\n" + super.toString() + "\nnumEjes=" + numEjes+"\n";
+        return super.toString() + Colores.VERDE+ "\nnumEjes=" + numEjes + Colores.RESET + "\n";
     }
     public String String2() {
         return super.String2()+ numEjes;

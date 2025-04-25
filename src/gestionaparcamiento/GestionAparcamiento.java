@@ -16,24 +16,19 @@ import java.util.Scanner;
 
 public class GestionAparcamiento {
 
+    static Scanner dato = new Scanner(System.in);
+
     static Aparcamiento apar = new Aparcamiento();
 
     static String rutaArchivo = ".\\lista.txt";
 
     public static void main(String[] args) {
-             LocalDateTime Now = LocalDateTime.now();
-       // Automovil A1 = new Automovil("TodoTerreno", "AAA555", Now, true);
-       //insertarVehiculo(A1);
-        //Camion C1 = new Camion(3,"1234AAA",Now,false);
-        //insertarVehiculo(C1);
-       LLenarArray();
-       //sacarVehiculo();
-       //apar.buscarPorFecha();
-       apar.verEstadisticas();
+        LLenarArray();
+        mainMenu();
     }
 
     public static void insertarVehiculo(Vehiculo a) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo ,true))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
 
             bw.write(a.String2()); // Convierte el objeto en texto
             bw.newLine(); // Nueva línea para cada objeto
@@ -56,14 +51,13 @@ public class GestionAparcamiento {
                 LocalDateTime fecha = LocalDateTime.parse(datos[1]);
                 boolean abono = Boolean.parseBoolean(datos[2]);
                 //Vemos si es Automovil o Camion
-                System.out.println(datos[3]);
-                
-                if (datos[3].equals("TodoTerreno")||datos[3].equals("Furgoneta")||datos[3].equals("Turismo")) {
-                    System.out.println("Es un auto");
+
+                if (datos[3].equals("TodoTerreno") || datos[3].equals("Furgoneta") || datos[3].equals("Turismo")) {
+                    //  System.out.println("Es un auto");
                     String tipo = datos[3];
                     V = new Automovil(tipo, matr, fecha, abono);
                 } else {
-                    System.out.println("Es un camion");
+                    //  System.out.println("Es un camion");
                     int nEjes = Integer.parseInt(datos[3]);
                     V = new Camion(nEjes, matr, fecha, abono);
                 }
@@ -73,49 +67,122 @@ public class GestionAparcamiento {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Array LLenado: ");
-        //System.out.println(apar.getVehiculos());
-        for (Vehiculo e : apar.getVehiculos()) {
-            System.out.println(e.getClass());
-        }
+
     }
 
-    public static void sacarVehiculo(){
-        apar.sacar_vehiculo();
-}
-    /*
-    public static void menu() {
-        //clearConsole();
+    public static void mainMenu() {
         int Action = 1;
         Scanner dato = new Scanner(System.in);
         while (Action != 0) {
-            System.out.println("-//-/-/-/-/-//-/-/Bienvenido/-/-/-//-/-/-/-//-/-/");
-            System.out.println("Quien Deseas Hacer?");
-            System.out.println("(1) Añadir Auto");
-            // System.out.println("(2)Eliminar Auto");
-            System.out.println("(2) Ver Historial");
-            System.out.println("(3) Cancelar Cita");
-            System.out.println("(0) Regresar");
+            System.out.println(Colores.BLANCO + "-//-/-/-/-/-//-/-/Bienvenido Al Parking/-/-/-//-/-/-/-//-/-/" + Colores.RESET);
+            System.out.println(Colores.VERDE + "Que desea hacer?" + Colores.RESET);
+            System.out.println(Colores.BLANCO + "(1) Menu Admin" + Colores.RESET);
+            System.out.println(Colores.BLANCO + "(2) Menu Cliente" + Colores.RESET);
+            System.out.println(Colores.ROJO + "(0) Salir" + Colores.RESET);
+            System.out.print(Colores.CYAN + "SELECCIONE OPCION QUE DESEA:" + Colores.RESET);
             Action = dato.nextInt();
             switch (Action) {
                 case 1:
-                    //insertarVehiculo();
+                    menuAdmin();
                     break;
                 case 2:
-                    //History();
-                    break;
-                case 3:
-                    //CancelarCita();
+                    menuCliente();
                     break;
                 case 0:
                     break;
                 default:
-                    System.out.println("Selecciona un Numero valido");
-                    ;
+                    System.out.println(Colores.ROJO + "Selecciona un Numero valido" + Colores.RESET);
             }
-
         }
-
     }
-     */
+
+    public static void preguntarSalir() {
+        System.out.println("Desea regresar? (1)SI ");
+        int resp = dato.nextInt();
+        if (resp == 1) {
+            return;
+        }
+    }
+
+    public static void menuAdmin() {
+        int Action = 1;
+        Scanner dato = new Scanner(System.in);
+        while (Action != 0) {
+            limpiarConsola();
+            System.out.println(Colores.BLANCO + "-//-/-/-/-/-//-/-/Bienvenido Al Menu Admin/-/-/-//-/-/-/-//-/-/" + Colores.RESET);
+            System.out.println(Colores.VERDE + "¿Qué desea hacer?" + Colores.RESET);
+            System.out.println(Colores.BLANCO + "(1) Ver cuántos coches hay" + Colores.RESET);
+            System.out.println(Colores.BLANCO + "(2) Ver cuántas plazas quedan disponibles" + Colores.RESET);
+            System.out.println(Colores.BLANCO + "(3) Buscar por fecha" + Colores.RESET);
+            System.out.println(Colores.BLANCO + "(4) Ver todos " + Colores.RESET);
+            System.out.println(Colores.ROJO + "(0) Regresar" + Colores.RESET);
+            System.out.print(Colores.CYAN + "SELECCIONE OPCIÓN QUE DESEA: " + Colores.RESET);
+            Action = dato.nextInt();
+            switch (Action) {
+                case 1:
+                    apar.verEstadisticas();
+                    preguntarSalir();
+                    break;
+                case 2:
+                    apar.verDisponibles();
+                    preguntarSalir();
+                    break;
+                case 3:
+                    apar.buscarPorFecha();
+                    preguntarSalir();
+                    break;
+                case 4:
+                    System.out.println(apar.getVehiculos());
+                    preguntarSalir();
+                    break;
+                case 0:
+                    limpiarConsola();
+                    break;
+                default:
+                    System.out.println(Colores.ROJO + "Seleccione un número válido" + Colores.RESET);
+            }
+        }
+    }
+
+    public static void menuCliente() {
+        int Action = 1;
+        Scanner dato = new Scanner(System.in);
+        while (Action != 0) {
+            limpiarConsola();
+            System.out.println(Colores.BLANCO + "-//-/-/-/-/-//-/-/Bienvenido Al Menu Cliente/-/-/-//-/-/-/-//-/-/" + Colores.RESET);
+            System.out.println(Colores.VERDE + "¿Qué desea hacer?" + Colores.RESET);
+            System.out.println(Colores.BLANCO + "(1) Entrar en el Parking" + Colores.RESET);
+            System.out.println(Colores.BLANCO + "(2) Salir del Parking" + Colores.RESET);
+            System.out.println(Colores.BLANCO + "(3) Consultar tiempo en el parking" + Colores.RESET);
+            System.out.println(Colores.ROJO + "(0) Regresar" + Colores.RESET);
+            System.out.print(Colores.CYAN + "SELECCIONE OPCIÓN QUE DESEA: " + Colores.RESET);
+            Action = dato.nextInt();
+            switch (Action) {
+                case 1:
+                    apar.introducir_vehiculo();
+                    preguntarSalir();
+                    break;
+                case 2:
+                    apar.sacar_vehiculo();
+                    preguntarSalir();
+                    break;
+                case 3:
+                    apar.CalcularTiempo();
+                    preguntarSalir();
+                    break;
+                case 0:
+                    limpiarConsola();
+                    break;
+                default:
+                    System.out.println(Colores.ROJO + "Seleccione un número válido" + Colores.RESET);
+            }
+        }
+    }
+
+    public static void limpiarConsola() {
+        for (int i = 0; i < 1; i++) {
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        }
+    }
+
 }
