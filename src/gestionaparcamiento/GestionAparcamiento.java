@@ -110,13 +110,13 @@ public class GestionAparcamiento {
         while (Action != 0) {
             limpiarConsola();
             System.out.println(Colores.BLANCO + "-//-/-/-/-/-//-/-/Bienvenido Al Menu Admin/-/-/-//-/-/-/-//-/-/" + Colores.RESET);
-            System.out.println(Colores.VERDE + "¿Qué desea hacer?" + Colores.RESET);
-            System.out.println(Colores.BLANCO + "(1) Ver cuántos coches hay" + Colores.RESET);
-            System.out.println(Colores.BLANCO + "(2) Ver cuántas plazas quedan disponibles" + Colores.RESET);
+            System.out.println(Colores.VERDE + "Que desea hacer?" + Colores.RESET);
+            System.out.println(Colores.BLANCO + "(1) Ver cuantos coches hay" + Colores.RESET);
+            System.out.println(Colores.BLANCO + "(2) Ver cuantas plazas quedan disponibles" + Colores.RESET);
             System.out.println(Colores.BLANCO + "(3) Buscar por fecha" + Colores.RESET);
             System.out.println(Colores.BLANCO + "(4) Ver todos " + Colores.RESET);
             System.out.println(Colores.ROJO + "(0) Regresar" + Colores.RESET);
-            System.out.print(Colores.CYAN + "SELECCIONE OPCIÓN QUE DESEA: " + Colores.RESET);
+            System.out.print(Colores.CYAN + "SELECCIONE OPCION QUE DESEA: " + Colores.RESET);
             Action = dato.nextInt();
             switch (Action) {
                 case 1:
@@ -139,7 +139,7 @@ public class GestionAparcamiento {
                     limpiarConsola();
                     break;
                 default:
-                    System.out.println(Colores.ROJO + "Seleccione un número válido" + Colores.RESET);
+                    System.out.println(Colores.ROJO + "Seleccione un numero valido" + Colores.RESET);
             }
         }
     }
@@ -150,12 +150,12 @@ public class GestionAparcamiento {
         while (Action != 0) {
             limpiarConsola();
             System.out.println(Colores.BLANCO + "-//-/-/-/-/-//-/-/Bienvenido Al Menu Cliente/-/-/-//-/-/-/-//-/-/" + Colores.RESET);
-            System.out.println(Colores.VERDE + "¿Qué desea hacer?" + Colores.RESET);
+            System.out.println(Colores.VERDE + "Que desea hacer?" + Colores.RESET);
             System.out.println(Colores.BLANCO + "(1) Entrar en el Parking" + Colores.RESET);
             System.out.println(Colores.BLANCO + "(2) Salir del Parking" + Colores.RESET);
             System.out.println(Colores.BLANCO + "(3) Consultar tiempo en el parking" + Colores.RESET);
             System.out.println(Colores.ROJO + "(0) Regresar" + Colores.RESET);
-            System.out.print(Colores.CYAN + "SELECCIONE OPCIÓN QUE DESEA: " + Colores.RESET);
+            System.out.print(Colores.CYAN + "SELECCIONE OPCION QUE DESEA: " + Colores.RESET);
             Action = dato.nextInt();
             switch (Action) {
                 case 1:
@@ -174,7 +174,7 @@ public class GestionAparcamiento {
                     limpiarConsola();
                     break;
                 default:
-                    System.out.println(Colores.ROJO + "Seleccione un número válido" + Colores.RESET);
+                    System.out.println(Colores.ROJO + "Seleccione un numero valido" + Colores.RESET);
             }
         }
     }

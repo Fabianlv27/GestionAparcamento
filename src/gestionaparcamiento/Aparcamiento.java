@@ -101,7 +101,7 @@ public class Aparcamiento {
         if (!encontrado) {
             boolean abono = false;
             System.out.println("Que tipo de vehiculo quiere introducir");
-            System.out.println("Pulse 0 para Automovil o 1 para Camion");
+            System.out.println(" 0 para Automovil \n 1 para Camion");
             int respuesta = dato.nextInt();
             System.out.println("Tiene abono? S/N");
             String respuesta2 = dato.next();
@@ -139,7 +139,7 @@ public class Aparcamiento {
             }
             actualizarArchivo();
             capacidad = capacidad - 1;
-            System.out.println(Colores.VERDE + "Vehículo añadido correctamente." + Colores.RESET);
+            System.out.println(Colores.VERDE + "Vehiculo añadido correctamente." + Colores.RESET);
         }
 
     }
@@ -167,17 +167,17 @@ public class Aparcamiento {
                         // Ahora reescribimos el archivo con la lista actualizada
                         actualizarArchivo();
                         capacidad++;
-                        System.out.println( Colores.ROJO+"Vehículo eliminado correctamente."+Colores.RESET);
+                        System.out.println( Colores.ROJO+"Vehiculo eliminado correctamente."+Colores.RESET);
                     }
                     encontrado = true;
                     break;
                 }
             }
             if (!encontrado) {
-                System.out.println(Colores.ROJO+"El vehículo con esa matrícula no fue encontrado."+Colores.RESET);
+                System.out.println(Colores.ROJO+"El vehiculo con esa matrícula no fue encontrado."+Colores.RESET);
             }
         } catch (Exception e) {
-            System.out.println(Colores.ROJO+"Hubo un error al intentar eliminar el vehículo."+Colores.RESET);
+            System.out.println(Colores.ROJO+"Hubo un error al intentar eliminar el vehiculo."+Colores.RESET);
             e.printStackTrace();
         }
     }
