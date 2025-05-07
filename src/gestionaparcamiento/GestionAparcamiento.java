@@ -171,8 +171,8 @@ public class GestionAparcamiento {
     }
 
     public static void limpiarConsola() {
-        for (int i = 0; i < 1; i++) {
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        for (int i = 0; i < 100; i++) {
+            System.out.println("\n");
         }
     }
 

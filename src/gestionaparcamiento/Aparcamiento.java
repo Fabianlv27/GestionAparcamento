@@ -121,10 +121,8 @@ public class Aparcamiento {
                     Tipo = "TodoTerreno";
                 } else if (TipoOpcion == 2) {
                     Tipo = "Turismo";
-
                 }else if (TipoOpcion == 3) {
                     Tipo = "Furgoneta";
-
                 }else{
                     System.out.println(Colores.ROJO+"Has introducido un valor no valido" + Colores.RESET);
                 }
@@ -197,20 +195,24 @@ public class Aparcamiento {
     }
 
     public void buscarPorFecha() {
+        
         System.out.println("Buscar por Fecha");
         String option = "";
         LocalDateTime date = LocalDateTime.now();
+        
         System.out.println("Seleccione fecha: dd-mm-yyyy");
         option = dato.next();
         date = date.withDayOfMonth(Integer.parseInt(option.split("-")[0])).
                 withMonth(Integer.parseInt(option.split("-")[1])).
                 withYear(Integer.parseInt(option.split("-")[2]));
+        
         System.out.println("Seleccione la Hora: hh:mm");
         option = dato.next();
         date = date.withHour(Integer.parseInt(option.split(":")[0])).
                 withMinute(Integer.parseInt(option.split(":")[1])).
                 withSecond(0).
                 withNano(0);
+        
         System.out.println("Vehiclulos ");
         for (Vehiculo e : vehiculos) {
             if (e.getFecha().isAfter(date)) {
@@ -246,6 +248,7 @@ public class Aparcamiento {
         }
         double Aporcentaje = porcentaje(cAutos, vehiculos.size());
         int Acarcateres = caracteres(Aporcentaje);
+        
         System.out.print("\u001B[31m" + "Autos: " + Math.round(Aporcentaje) + "% " + "(" + cAutos + ")" + "\u001B[31m");
         System.out.println("\t" + "\u001B[32m" + "Camiones: " + (100 - Math.round(Aporcentaje)) + "% " + "(" + (vehiculos.size() - cAutos) + ")" + "\u001B[32m");
         for (int i = 0; i < 2; i++) {
@@ -285,6 +288,7 @@ public class Aparcamiento {
         double PFurgoneta = porcentaje(cFurgoneta, suma);
         int ccFurgoneta = caracteres(PFurgoneta);
         int cctotal = ccTTerreno + ccFurgoneta + ccTurismo;
+        
         while (cctotal < 30) {
             ccTTerreno++;
             ccFurgoneta++;
