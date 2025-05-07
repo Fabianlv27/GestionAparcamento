@@ -236,7 +236,7 @@ public class Aparcamiento {
     public void verEstadisticas() {
         int cAutos = 0;
         if (vehiculos.size() == 0) {
-            System.out.println("El Aparcamento se encuentra vacio xd");
+            System.out.println("El Aparcamento se encuentra vacio ");
             return;
         }
         for (Vehiculo e : vehiculos) {

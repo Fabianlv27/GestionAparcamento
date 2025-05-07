@@ -63,12 +63,13 @@ public class Automovil extends Vehiculo {
                 break;    
         }
         //Calculamos el precio a pagar por el usuario
-        total= Math.round((minutos * tasa / 60)*100.0) / 100.0; 
+        total=( minutos * tasa) / 60; 
         if(this.isAbono()){
             //Si tiene abono a ese total le aplicamos el 40% de descuento
             total -= (total*0.4);
         }
-        return total;
+        
+        return Math.round((total)*100.0) / 100.0 ;
     }
 
 }

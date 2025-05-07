@@ -21,26 +21,17 @@ public class GestionAparcamiento {
     static Aparcamiento apar = new Aparcamiento();
 
     static String rutaArchivo = ".\\lista.txt";
+    
 
     public static void main(String[] args) {
         LLenarArray();
         mainMenu();
     }
+    
 
-    public static void insertarVehiculo(Vehiculo a) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
-
-            bw.write(a.String2()); // Convierte el objeto en texto
-            bw.newLine(); // Nueva línea para cada objeto
-            System.out.println("Archivo escrito correctamente.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public static void LLenarArray() {
-
+//Verificar si existe el archivo 
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
             Vehiculo V = null;
