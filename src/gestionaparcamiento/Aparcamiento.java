@@ -224,6 +224,7 @@ public class Aparcamiento {
     public double porcentaje(int cant, int total) {
 
             double porcentaje = Math.round(((cant * 100) / total) * 10.0) / 10.0;
+            System.out.println(porcentaje);
             return porcentaje;
         
 
@@ -290,10 +291,20 @@ public class Aparcamiento {
         int cctotal = ccTTerreno + ccFurgoneta + ccTurismo;
         
         while (cctotal < 30) {
-            ccTTerreno++;
-            ccFurgoneta++;
-            ccTurismo++;
-            cctotal += 3;
+            if (ccTTerreno!=0 && cctotal<30) {
+                 ccTTerreno++;
+                      cctotal ++;
+            }
+            if (ccFurgoneta!=0 && cctotal <30) {
+                ccFurgoneta++;
+                cctotal++;
+            }
+            if (ccTurismo !=0 && cctotal >30) {
+                ccTurismo++;
+                cctotal++;
+            }
+            
+       
         }
         System.out.print("\n" + "\u001B[31m" + "Todo Terreno: " + Math.round(PTTerreno) + "% " + "(" + cTTerreno + ")" + "\u001B[31m");
         System.out.println("\t" + "\u001B[32m" + "Turismo: " + (Math.round(PTurismo)) + "% " + "(" + (cTurismo) + ")" + "\u001B[32m");
